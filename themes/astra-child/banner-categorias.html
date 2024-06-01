@@ -5,10 +5,12 @@
                 <img src="http://la-casa-del-tapicero.local/wp-content/themes/astra-child/assets/automotor.webp" alt="banner images">
                 <div class="banner-text">
                     <h3>Tapiceria Automotor</h3>
-                    <!--<p class="sub-text">Subtítulo descriptivo aquí.</p>-->
-                    <button>
-                        <span class="btn btn-primary">Ver más</span>
-                    </button>
+                    <!-- <p class="sub-text">Venta por mayor & menor.</p> -->
+                    <a href="http://la-casa-del-tapicero.local/tienda-automotor-tapiceria/">
+                        <button>
+                            <span class="btn btn-primary">Ver más</span>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -17,12 +19,47 @@
                 <img src="http://la-casa-del-tapicero.local/wp-content/themes/astra-child/assets/merceria.webp" alt="banner images">
                 <div class="banner-text">
                     <h3>Merceria & Decoración</h3>
-                    <!--<p class="sub-text">Otro subtítulo descriptivo aquí.</p>-->
-                    <button>
-                        <span class="btn btn-primary">Ver más</span>
-                    </button>
+                    <!-- <p class="sub-text">Venta por mayor & menor.</p> -->
+                    <a href="http://la-casa-del-tapicero.local/tienda-merceria-decoracion/">
+                        <button>
+                            <span class="btn btn-primary">Ver más</span>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- estilos horarios y direccion -->
+<style>
+    .wp-block-group h2,
+    .wp-block-group p {
+        color: white;
+    }
+    .wp-block-columns {
+        display: flex;
+        justify-content: space-around;
+        justify-content: space-between !important;
+    }
+    /* Seleccionar el bloque específico usando una clase adicional */
+    .custom-group {
+        max-width: 800px; /* Máximo ancho del bloque */
+        width: 90%; /* Ancho relativo para mantener el diseño responsive */
+        margin: 0 auto; /* Centrando el bloque */
+        padding: 20px; /* Espaciado interno */
+        background: rgba(0, 0, 0, 0.5);
+    }
+    /* Asegurar que en dispositivos móviles no se reduzca demasiado */
+    @media (max-width: 600px) {
+        .custom-group {
+            width: 95%;
+            padding: 10px;
+        }
+    }
+    /* Estilos de texto */
+    .custom-group h2,
+    .custom-group p {
+        color: white;
+        font-size: medium;
+    }
+</style>

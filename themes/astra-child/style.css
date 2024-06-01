@@ -182,6 +182,8 @@ li.product {
     margin-top: 10px;
     padding: 0 10px;
     overflow: hidden;
+    /* nuevo */
+    position: relative; 
 }
 .banner_only_image .banner.co11 {
     flex-basis: 50%;
@@ -224,27 +226,46 @@ li.product {
     position: relative;
 }
 .banner img {
-    display: block;
+    /* display: block; */
     width: 100%;
     height: auto;
+    /* nuevo */
+    height: 30vw;
+    object-fit: cover;
+    transition: transform 300ms ease-in-out;
+}
+/* Overlay Categorias Test */
+.overlay {
+    position: relative;
+}
+.overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 .banner-text {
-    position: absolute;
-    bottom: 50px;
+    /* position: absolute; */
+    /* bottom: 50px; */
+    /* left: 50%; */
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
     text-align: center;
     padding: 10px 20px;
     box-sizing: border-box;
     width: 95%;
-    max-width: 99%;
+    max-width: 100%;
+    position: absolute;
+    transform: translate(-50%, -35%);
+    z-index: 2;
 }
 .banner-text h3, .banner-text p {
     margin: 0 !important;
     color: #fff;
-}
-.banner-text h3 {
-    padding-bottom: 1rem;
 }
 .sub-text {
     font-size: .85em;
@@ -252,6 +273,7 @@ li.product {
     display: block;
     line-height: 1.3;
     opacity: .6;
+    padding-bottom: 1rem;
 }
 .wp-block-uagb-container.uagb-block-f517ed11.alignfull.uagb-is-root-container {
     padding-top: 0;
@@ -265,6 +287,10 @@ li.product {
 .banner img:hover {
     -webkit-transform: scale3d(1.05, 1.05, 1.05);
             transform: scale3d(1.05, 1.05, 1.05);
+}
+/* nuevo */
+.banner:hover img {
+    transform: scale(1.05);
 }
 h1.uagb-ifb-title {
     font-size: 72px;
@@ -331,27 +357,4 @@ h1.uagb-ifb-title {
         gap: 50px;
         padding-bottom: 50px;
     }
-}
-
-/* Overlay Categorias Test */
-.overlay {
-    position: relative;
-}
-.overlay::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Cambia el valor de opacidad (0.5) según lo necesites */
-    z-index: 1;
-}
-.banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    color: white; /* Opcional: cambia el color del texto si es necesario */
 }
