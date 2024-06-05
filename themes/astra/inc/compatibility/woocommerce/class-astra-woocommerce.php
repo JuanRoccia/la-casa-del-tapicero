@@ -464,7 +464,20 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 				),
 			);
 
-			if ( 'hang-over-top' === astra_get_option( 'store-notice-position' ) ) {
+			// Checking if the store notice is hidden or not!
+			$notice_hidden = false;
+			if ( ! is_customize_preview() ) {
+				$notice = get_option( 'woocommerce_demo_store_notice' );
+
+				if ( empty( $notice ) ) {
+					$notice = __( 'This is a demo store for testing purposes &mdash; no orders shall be fulfilled.', 'astra' );
+				}
+
+				$notice_id     = md5( $notice );
+				$notice_hidden = isset( $_COOKIE[ "store_notice{$notice_id}" ] ) && 'hidden' === $_COOKIE[ "store_notice{$notice_id}" ];
+			}
+
+			if ( ! $notice_hidden && 'hang-over-top' === astra_get_option( 'store-notice-position' ) ) {
 				$css_output_desktop['.ast-woocommerce-store-notice-hanged'] = array(
 					'margin-top' => '57px',
 				);
@@ -973,8 +986,15 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 		 */
 		public function shop_columns( $col ) {
 
-			$col = astra_get_option( 'shop-grids' );
-			return $col['desktop'];
+			$astra_shop_col = astra_get_option(
+				'shop-grids',
+				array(
+					'desktop' => 4,
+					'tablet'  => 3,
+					'mobile'  => 2,
+				)
+			);
+			return $astra_shop_col['desktop'];
 		}
 
 		/**
@@ -1028,7 +1048,14 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 		public function shop_page_products_item_class( $classes = '' ) {
 
 			if ( is_shop() || is_product_taxonomy() ) {
-				$shop_grid = astra_get_option( 'shop-grids' );
+				$shop_grid = astra_get_option(
+					'shop-grids',
+					array(
+						'desktop' => 4,
+						'tablet'  => 3,
+						'mobile'  => 2,
+					)
+				);
 				$classes[] = 'columns-' . $shop_grid['desktop'];
 				$classes[] = 'tablet-columns-' . $shop_grid['tablet'];
 				$classes[] = 'mobile-columns-' . $shop_grid['mobile'];
@@ -1063,7 +1090,14 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 		public function get_grid_column_count( $type = 'archive', $device = 'desktop', $default = 2 ) {
 
 			if ( 'archive' === $type ) {
-				$products_grid = astra_get_option( 'shop-grids' );
+				$products_grid = astra_get_option(
+					'shop-grids',
+					array(
+						'desktop' => 4,
+						'tablet'  => 3,
+						'mobile'  => 2,
+					)
+				);
 			} else {
 				$products_grid = astra_get_option( 'single-product-related-upsell-grid' );
 			}
@@ -1103,7 +1137,14 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 		 */
 		public function related_products_args( $args ) {
 
-			$col                    = astra_get_option( 'shop-grids' );
+			$col                    = astra_get_option(
+				'shop-grids',
+				array(
+					'desktop' => 4,
+					'tablet'  => 3,
+					'mobile'  => 2,
+				)
+			);
 			$args['posts_per_page'] = $col['desktop'];
 			return $args;
 		}
@@ -3286,33 +3327,30 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 		/**
 		 * Woocommerce mini cart markup markup
 		 *
+		 * @param string $device Either 'mobile' or 'desktop' option.
+		 *
 		 * @since 1.2.2
 		 * @return html
 		 */
-		public function woo_mini_cart_markup() {
-
-			if ( is_cart() ) {
-				$class = 'current-menu-item';
-			} else {
-				$class = '';
-			}
-
-			$desktop_cart_flyout = 'flyout' === astra_get_option( 'woo-header-cart-click-action' ) ? 'ast-desktop-cart-flyout' : '';
+		public function woo_mini_cart_markup( $device = 'desktop' ) {
+			$class               = is_cart() ? 'current-menu-item' : '';
+			$cart_click_action   = astra_get_option( 'woo-header-cart-click-action', 'default' );
+			$desktop_cart_flyout = 'flyout' === $cart_click_action ? 'ast-desktop-cart-flyout' : '';
 			$cart_menu_classes   = apply_filters( 'astra_cart_in_menu_class', array( 'ast-menu-cart-with-border', $desktop_cart_flyout ) );
 			ob_start();
 			if ( is_customize_preview() && true === Astra_Builder_Helper::$is_header_footer_builder_active ) {
 				Astra_Builder_UI_Controller::render_customizer_edit_button();
 			}
 			?>
-			<div id="ast-site-header-cart" class="ast-site-header-cart <?php echo esc_attr( implode( ' ', $cart_menu_classes ) ); ?>">
+			<div class="ast-site-header-cart <?php echo esc_attr( implode( ' ', $cart_menu_classes ) ); ?>">
 				<div class="ast-site-header-cart-li <?php echo esc_attr( $class ); ?>">
 					<?php $this->astra_get_cart_link(); ?>
 				</div>
 				<div class="ast-site-header-cart-data">
 
 					<?php
-					// Load 'Slide-In Cart' or 'Dropdown Cart' Widget when 'Cart Page' Option is not selected.
-					if ( 'redirect' !== astra_get_option( 'woo-header-cart-click-action' ) ) {
+					// Load 'Dropdown Cart' Widget when default option is selected and only for desktop header, for mobile flyout is loaded.
+					if ( 'default' === $cart_click_action && 'desktop' === $device ) {
 						the_widget( 'WC_Widget_Cart', 'title=' );
 					}
 					?>
