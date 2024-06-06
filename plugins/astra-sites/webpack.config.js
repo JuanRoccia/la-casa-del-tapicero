@@ -38,4 +38,14 @@ module.exports = {
 			},
 		],
 	},
+	resolve: {
+		// ...
+		fallback: {
+			'react/jsx-runtime': require.resolve( 'react/jsx-runtime' ),
+		},
+		alias: {
+			...defaultConfig.resolve.alias,
+			'@WhatsNew': path.resolve( __dirname, 'inc/lib/whats-new/' ),
+		},
+	},
 };

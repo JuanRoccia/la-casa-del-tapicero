@@ -29,10 +29,6 @@ $icon_size        = UAGB_Helper::get_css_value( $attr['iconSize'], $attr['iconSi
 $icon_size_tablet = UAGB_Helper::get_css_value( $attr['iconSizeTablet'], $attr['iconSizeType'] );
 $icon_size_mobile = UAGB_Helper::get_css_value( $attr['iconSizeMobile'], $attr['iconSizeType'] );
 
-$btn_padding_top         = isset( $attr['paddingBtnTop'] ) ? $attr['paddingBtnTop'] : $attr['ctaBtnVertPadding'];
-$btn_padding_bottom      = isset( $attr['paddingBtnBottom'] ) ? $attr['paddingBtnBottom'] : $attr['ctaBtnVertPadding'];
-$btn_padding_left        = isset( $attr['paddingBtnLeft'] ) ? $attr['paddingBtnLeft'] : $attr['ctaBtnHrPadding'];
-$btn_padding_right       = isset( $attr['paddingBtnRight'] ) ? $attr['paddingBtnRight'] : $attr['ctaBtnHrPadding'];
 $icon_padding_top        = is_int( $attr['iconTopMargin'] ) ? $attr['iconTopMargin'] : 0;
 $icon_padding_bottom     = is_int( $attr['iconBottomMargin'] ) ? $attr['iconBottomMargin'] : 0;
 $icon_padding_left       = is_int( $attr['iconLeftMargin'] ) ? $attr['iconLeftMargin'] : 0;
@@ -551,13 +547,31 @@ if ( 'above-title' === $attr['iconimgPosition'] ) {
 	);
 }
 
-$selectors['.uagb-infobox__content-wrap:not(.wp-block-uagb-info-box--has-margin)']                        = array(
+if ( 'left' === $attr['iconimgPosition'] || 'right' === $attr['iconimgPosition'] ) {
+	if ( 'none' === $attr['stack'] ) {
+		$t_selectors[' .uagb-infobox-margin-wrapper'] = array(
+			'display' => 'flex',
+		);
+		$m_selectors[' .uagb-infobox-margin-wrapper'] = array(
+			'display' => 'flex',
+		);
+	} elseif ( 'mobile' === $attr['stack'] ) {
+		$t_selectors[' .uagb-infobox-margin-wrapper'] = array(
+			'display' => 'flex',
+		);
+		$m_selectors[' .uagb-infobox-margin-wrapper'] = array(
+			'display' => 'block',
+		);
+	}
+}
+
+$selectors['.uagb-infobox__content-wrap:not(.wp-block-uagb-info-box--has-margin)']                          = array(
 	'padding-top'    => UAGB_Helper::get_css_value( $attr['blockTopPadding'], $attr['blockPaddingUnit'] ),
 	'padding-right'  => UAGB_Helper::get_css_value( $attr['blockRightPadding'], $attr['blockPaddingUnit'] ),
 	'padding-bottom' => UAGB_Helper::get_css_value( $attr['blockBottomPadding'], $attr['blockPaddingUnit'] ),
 	'padding-left'   => UAGB_Helper::get_css_value( $attr['blockLeftPadding'], $attr['blockPaddingUnit'] ),
 );
-$selectors['.uagb-infobox__content-wrap.wp-block-uagb-info-box--has-margin .uagb-infobox-margin-wrapper'] = array(
+$selectors['.uagb-infobox__content-wrap.wp-block-uagb-info-box--has-margin .uagb-infobox-margin-wrapper']   = array(
 	'padding-top'    => UAGB_Helper::get_css_value( $attr['blockTopPadding'], $attr['blockPaddingUnit'] ),
 	'padding-right'  => UAGB_Helper::get_css_value( $attr['blockRightPadding'], $attr['blockPaddingUnit'] ),
 	'padding-bottom' => UAGB_Helper::get_css_value( $attr['blockBottomPadding'], $attr['blockPaddingUnit'] ),
@@ -567,7 +581,7 @@ $selectors['.uagb-infobox__content-wrap.wp-block-uagb-info-box--has-margin .uagb
 	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['blockBottomMargin'], $attr['blockMarginUnit'] ),
 	'margin-left'    => UAGB_Helper::get_css_value( $attr['blockLeftMargin'], $attr['blockMarginUnit'] ),
 );
-$t_selectors['.uagb-infobox__content-wrap'] = array(
+$t_selectors['.uagb-infobox__content-wrap:not(.wp-block-uagb-info-box--has-margin)']                        = array(
 	'padding-top'    => UAGB_Helper::get_css_value( $attr['blockTopPaddingTablet'], $attr['blockPaddingUnitTablet'] ),
 	'padding-right'  => UAGB_Helper::get_css_value( $attr['blockRightPaddingTablet'], $attr['blockPaddingUnitTablet'] ),
 	'padding-bottom' => UAGB_Helper::get_css_value( $attr['blockBottomPaddingTablet'], $attr['blockPaddingUnitTablet'] ),
@@ -583,7 +597,7 @@ $t_selectors['.uagb-infobox__content-wrap.wp-block-uagb-info-box--has-margin .ua
 	'margin-bottom'  => UAGB_Helper::get_css_value( $attr['blockBottomMarginTablet'], $attr['blockMarginUnitTablet'] ),
 	'margin-left'    => UAGB_Helper::get_css_value( $attr['blockLeftMarginTablet'], $attr['blockMarginUnitTablet'] ),
 );
-$m_selectors['.uagb-infobox__content-wrap'] = array(
+$m_selectors['.uagb-infobox__content-wrap:not(.wp-block-uagb-info-box--has-margin)']                        = array(
 	'padding-top'    => UAGB_Helper::get_css_value( $attr['blockTopPaddingMobile'], $attr['blockPaddingUnitMobile'] ),
 	'padding-right'  => UAGB_Helper::get_css_value( $attr['blockRightPaddingMobile'], $attr['blockPaddingUnitMobile'] ),
 	'padding-bottom' => UAGB_Helper::get_css_value( $attr['blockBottomPaddingMobile'], $attr['blockPaddingUnitMobile'] ),
@@ -708,20 +722,20 @@ if ( ! $attr['inheritFromTheme'] ) {
 		array(
 			'color'            => $attr['ctaBtnLinkColor'],
 			'background-color' => $attr['ctaBgColor'],
-			'padding-top'      => UAGB_Helper::get_css_value( $btn_padding_top, $attr['paddingBtnUnit'] ),
-			'padding-bottom'   => UAGB_Helper::get_css_value( $btn_padding_bottom, $attr['paddingBtnUnit'] ),
-			'padding-left'     => UAGB_Helper::get_css_value( $btn_padding_left, $attr['paddingBtnUnit'] ),
-			'padding-right'    => UAGB_Helper::get_css_value( $btn_padding_right, $attr['paddingBtnUnit'] ),
+			'padding-top'      => UAGB_Helper::get_css_value( $attr['paddingBtnTop'], $attr['paddingBtnUnit'] ),
+			'padding-bottom'   => UAGB_Helper::get_css_value( $attr['paddingBtnBottom'], $attr['paddingBtnUnit'] ),
+			'padding-left'     => UAGB_Helper::get_css_value( $attr['paddingBtnLeft'], $attr['paddingBtnUnit'] ),
+			'padding-right'    => UAGB_Helper::get_css_value( $attr['paddingBtnRight'], $attr['paddingBtnUnit'] ),
 	
 		);
 		$selectors['.wp-block-uagb-info-box.uagb-infobox__content-wrap .wp-block-button.uagb-ifb-button-wrapper .uagb-infobox-cta-link.wp-block-button__link'] = array_merge(
 			array(
 				'color'            => $attr['ctaBtnLinkColor'],
 				'background-color' => ( 'color' === $attr['ctaBgType'] ) ? $attr['ctaBgColor'] : 'transparent',
-				'padding-top'      => UAGB_Helper::get_css_value( $btn_padding_top, $attr['paddingBtnUnit'] ),
-				'padding-bottom'   => UAGB_Helper::get_css_value( $btn_padding_bottom, $attr['paddingBtnUnit'] ),
-				'padding-left'     => UAGB_Helper::get_css_value( $btn_padding_left, $attr['paddingBtnUnit'] ),
-				'padding-right'    => UAGB_Helper::get_css_value( $btn_padding_right, $attr['paddingBtnUnit'] ),
+				'padding-top'      => UAGB_Helper::get_css_value( $attr['paddingBtnTop'], $attr['paddingBtnUnit'] ),
+				'padding-bottom'   => UAGB_Helper::get_css_value( $attr['paddingBtnBottom'], $attr['paddingBtnUnit'] ),
+				'padding-left'     => UAGB_Helper::get_css_value( $attr['paddingBtnLeft'], $attr['paddingBtnUnit'] ),
+				'padding-right'    => UAGB_Helper::get_css_value( $attr['paddingBtnRight'], $attr['paddingBtnUnit'] ),
 			),
 			$cta_border_css
 		);
@@ -776,7 +790,11 @@ $combined_selectors = array(
 );
 
 $combined_selectors = UAGB_Helper::get_typography_css( $attr, 'head', ' .uagb-ifb-title', $combined_selectors );
-$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'subHead', ' .uagb-ifb-desc', $combined_selectors );
+if ( $attr['enableMultilineParagraph'] ) {
+	$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'subHead', ' .uagb-ifb-desc p', $combined_selectors );
+} else {
+	$combined_selectors = UAGB_Helper::get_typography_css( $attr, 'subHead', ' .uagb-ifb-desc', $combined_selectors );
+}
 $combined_selectors = UAGB_Helper::get_typography_css( $attr, 'prefix', ' .uagb-ifb-title-prefix', $combined_selectors );
 
 if ( ! $attr['inheritFromTheme'] ) { 

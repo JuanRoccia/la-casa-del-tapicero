@@ -111,11 +111,13 @@ return array_merge(
 		'ctaLoadGoogleFonts'         => false,
 		'ctaBtnLinkColor'            => '',
 		'ctaBgColor'                 => '',
-		'ctaBtnVertPadding'          => 10,
-		'ctaBtnHrPadding'            => 14,
 		'paddingBtnUnit'             => 'px',
 		'mobilePaddingBtnUnit'       => 'px',
 		'tabletPaddingBtnUnit'       => 'px',
+		'paddingBtnTop'              => '',
+		'paddingBtnRight'            => '',
+		'paddingBtnBottom'           => '',
+		'paddingBtnLeft'             => '',
 		'paddingBtnTopTablet'        => '',
 		'paddingBtnRightTablet'      => '',
 		'paddingBtnBottomTablet'     => '',
@@ -202,7 +204,8 @@ return array_merge(
 		'separatorMarginLeftMobile'  => '',
 		'separatorMobileMarginUnit'  => 'px',
 		'separatorTabletMarginUnit'  => 'px',
-
+		'stack'                      => 'tablet',
+		
 		'subHeadTabletSpace'         => '',
 		'subHeadMobileSpace'         => '',
 		'subHeadSpaceUnit'           => 'px',
@@ -291,6 +294,7 @@ return array_merge(
 		// For Global Block Styles.
 		'globalBlockStyleName'       => '',
 		'globalBlockStyleId'         => '',
+		'enableMultilineParagraph'   => false,
 	),
 	$cta_border_attribute
 );
