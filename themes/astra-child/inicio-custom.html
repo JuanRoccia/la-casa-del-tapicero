@@ -30,6 +30,12 @@
         </div>
     </div>
 </div>
+<!-- color-font del menu desplegable tienda -->
+<style>
+    #menu-item-1690 a, #menu-item-1687 a {
+        color: var(--ast-global-color-3);
+    }
+</style>
 <!-- estilos horarios y direccion -->
 <style>
     .wp-block-group h2,
@@ -61,5 +67,40 @@
     .custom-group p {
         color: white;
         font-size: medium;
+    }
+    /* midificar el custom-group h2 a partir de los 425px para abajo o hasata los 425px */
+    @media (max-width: 425px) {
+        .custom-group h2 {
+            font-size: 1.5rem !important;
+        }
+    }
+</style>
+
+<style>
+    /* modificar espaciado del titulo con respecto al banner a hasta los 425px */
+    @media (max-width: 525px) {
+        .uagb-container-inner-blocks-wrap {
+            row-gap: 10px !important;
+        }
+    }
+    /* Modificar tamaño y padding del banner hasta los 525px */
+    @media (max-width: 545px) {
+        .banner_only_image {
+            flex-direction: column;
+        }
+        .banner_only_image .banner {
+            padding: 10px 20px;
+            padding: 10px 45px;
+            height: 100vw; /* Aumentar altura en móviles */
+        }
+        .banner img, .banner_only_image .banner img {
+            height: 100vw !important;
+        }
+        .overlay {
+            height: 100vw;
+        }
+        .banner-text {
+            font-size: 1.2em;
+        }
     }
 </style>

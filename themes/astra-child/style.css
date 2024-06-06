@@ -185,6 +185,12 @@ li.product {
     /* nuevo */
     position: relative; 
 }
+/* Modificar tamaño y padding del banner hasta los 525px */
+@media (max-width: 525px) {
+    .banner_only_image .banner {
+        padding: 10px 50px;
+    }
+}
 .banner_only_image .banner.co11 {
     flex-basis: 50%;
 }
@@ -302,16 +308,20 @@ h1.uagb-ifb-title {
     h1.uagb-ifb-title {
         font-size: clamp(48px, 1.5vw, 20px);
     }
+    .uagb-container-inner-blocks-wrap {
+        margin-top: 50px;
+    }
 }
 @media (max-width: 628px) {
     .banner_only_image {
         display: grid !important;
     }
-    .banner.co11, .banner.co12, .banner.co13 {
+    /* .banner.co11, .banner.co12, .banner.co13 {
         display: none;
-    }
+    } */
     .banner-text {
-        bottom: 7px !important;
+        /* bottom: 7px !important; */
+        bottom: -66px !important;
     }
     .wp-block-uagb-container.uagb-block-f517ed11 {
         padding-left: 0px;
@@ -324,25 +334,33 @@ h1.uagb-ifb-title {
 }
 @media (max-width: 544px) {
     h1.uagb-ifb-title {
-        font-size: clamp(32px, 1.5vw, 20px);
+        font-size: clamp(37px, 1.5vw, 20px);
     }
     /* .wp-block-uagb-container.uagb-block-f517ed11.alignfull.uagb-is-root-container {
         display: none;
     } */
     h2.uagb-heading-text {
         font-size: clamp(30px, 1.5vw, 20px);
+    }
+    .banner-text {
+        /* bottom: 7px !important; */
+        bottom: 87px !important;
     }      
 }
 @media (max-width: 425px) {
-    h1.uagb-ifb-title {
+    /* h1.uagb-ifb-title {
         font-size: clamp(20px, 1.5vw, 20px);
-    }
+    } */
     .uagb-block-80f427ef .uagb-ifb-title-prefix {
         font-size: clamp(10px, 1.5vw, 20px);
     }
     h2.uagb-heading-text {
         font-size: clamp(26px, 1.5vw, 20px);
     }
+    .banner-text {
+        /* bottom: 7px !important; */
+        bottom: 60px !important;
+    } 
 }
 @media (max-width: 375px) {
     h2.uagb-heading-text {
@@ -357,4 +375,8 @@ h1.uagb-ifb-title {
         gap: 50px;
         padding-bottom: 50px;
     }
+    .banner-text {
+        /* bottom: 7px !important; */
+        bottom: 0px !important;
+    } 
 }
