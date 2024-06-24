@@ -1,4 +1,4 @@
-<div id="block-12" class="ast-woo-sidebar-widget widget widget_block">
+<div id="product-search" class="ast-woo-sidebar-widget widget widget_block">
     <div data-block-name="woocommerce/product-search" data-has-label="false" data-form-id="wc-block-product-search-1" class="wc-block-product-search wp-block-woocommerce-product-search">
         <form role="search" method="get" action="http://ericmariod1.sg-host.com/">
             <label for="wc-block-search__input-1" class="wc-block-product-search__label screen-reader-text">Buscar</label>
@@ -15,13 +15,16 @@
     </div>
 </div>
 <style>
+    .wc-block-product-categories-list-item__image {
+        border: 0px !important;
+    }
     @media (min-width: 768px) {
-        #block-12 {
+        #product-search {
             display: none;
         }
     }
     @media (max-width: 768px) {
-        #block-12 {
+        #product-search {
             display: block;
         }
     }
@@ -30,5 +33,12 @@
             display: none;
         }
     }
-    @media (min-width:768px){#block-12{display:none}}@media (max-width:768px){#block-12{display:block}}
+    /* top 2 rem hasta 545px */
+    @media (max-width: 545px) {
+        .ast-woocommerce-containert {
+            margin-top: 2rem;
+        }
+    }
+    .wc-block-product-categories-list-item__image{border:0!important}@media (min-width:768px){#product-search{display:none}}@media (max-width:768px){#product-search{display:block}#block-11{display:none}}@media (max-width:545px){.ast-woocommerce-containert{margin-top:2rem}}
+    .wc-block-product-categories-list-item__image{border:0!important}@media (min-width:768px){#product-search{display:none}}@media (max-width:768px){#product-search{display:block}#block-11{display:none}}
 </style>

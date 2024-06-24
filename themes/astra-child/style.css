@@ -27,9 +27,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html Text Domain: astra-child *
         max-width: 75px !important;
     }
 }
-.ast-woocommerce-container {
-    margin-top: 6rem;
-}
 .ast-woo-product-no-review {
     padding: 2rem 5rem !important;
 }
