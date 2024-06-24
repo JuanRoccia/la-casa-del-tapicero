@@ -377,3 +377,8 @@ h1.uagb-ifb-title {
         bottom: 0px !important;
     } 
 }
+@media (max-width: 768px) {
+    .ast-separate-container.single-product .ast-article-single {
+        margin-top: 10%;
+    }
+}
