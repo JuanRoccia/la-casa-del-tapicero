@@ -382,3 +382,12 @@ h1.uagb-ifb-title {
         margin-top: 10%;
     }
 }
+.single_variation_wrap {
+    display: none !important;
+}
+.value {
+    display: none !important;
+}
+.summary.entry-summary .whatsapp-link-consulta {
+    color: #000 !important;
+}
